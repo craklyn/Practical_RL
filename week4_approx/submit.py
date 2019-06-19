@@ -5,7 +5,8 @@ import grading
 
 
 def submit_cartpole(generate_session, email, token):
-    session_rewards = [generate_session() for _ in range(100)]
+    sessions = [generate_session() for _ in range(100)]
+    session_rewards, _, _ = map(np.array, zip(*sessions))
     grader = grading.Grader("RDofv-QXEeeaGw6kpIOf3g")
     grader.set_answer("NRNkl", int(np.mean(session_rewards)))
     grader.submit(email, token)
